@@ -2,6 +2,11 @@ let express = require('express');
 let app = express();
 require('dotenv').config();
 
+app.use(function(req, res, next) {
+    console.log(req.method + " " + req.path + " - " + req.ip);
+    next();
+})
+
 // console.log("Hello World")
 
 app.get("/", function(req, res) {
@@ -25,10 +30,6 @@ app.get("/json" , function(req,res) {
   }
 });
 
-app.use(function(req, res, next) {
-    console.log(req.method + " " + req.path + "-" + req.ip)
-    next();
-})
 
 
 
